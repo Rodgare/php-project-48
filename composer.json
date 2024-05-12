@@ -1,0 +1,20 @@
+{
+    "name": "hexlet/code",
+    "description": "Second project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Axel\\PhpProject48\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Axel",
+            "email": "axel19911@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "docopt/docopt": "dev-master"
+    }
+}
