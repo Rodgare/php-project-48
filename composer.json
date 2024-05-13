@@ -15,6 +15,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "docopt/docopt": "dev-master"
+        "docopt/docopt": "dev-master",
+        "lstrojny/functional-php": "dev-main"
     }
 }
