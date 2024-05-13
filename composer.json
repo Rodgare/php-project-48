@@ -3,6 +3,7 @@
     "description": "Second project",
     "license": "MIT",
     "autoload": {
+        "files": ["src/Differ"],
         "psr-4": {
             "Axel\\PhpProject48\\": "src/"
         }
@@ -17,5 +18,8 @@
     "require": {
         "docopt/docopt": "dev-master",
         "lstrojny/functional-php": "dev-main"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.2@dev"
     }
 }
