@@ -6,3 +6,6 @@
 
 ### Maintainability:
 [![Maintainability](https://api.codeclimate.com/v1/badges/e388d49eb376ecea7e5e/maintainability)](https://codeclimate.com/github/Rodgare/php-project-48/maintainability)
+
+### Help and compare 2 jsons
+[![asciicast](https://asciinema.org/a/kHMmJWTWEwCb4QSd8JCNIBoOd.svg)](https://asciinema.org/a/kHMmJWTWEwCb4QSd8JCNIBoOd)
