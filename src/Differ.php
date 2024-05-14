@@ -1,7 +1,6 @@
 <?php
 
-$json1 = json_decode(file_get_contents('files/file1.json'), true);
-$json2 = json_decode(file_get_contents('files/file2.json'), true);
+namespace Differ\Differ;
 
 function setSign(array $arr, string $sign = '')
 {
@@ -33,11 +32,11 @@ function combine(array $json1, array $json2)
     }, $merged);
 }
 
-function genDiff(array $json1, array $json2)
+function genDiff($firstFilePath, $secondFilePath)
 {
-    echo "{\n";
+    $json1 = json_decode(file_get_contents($firstFilePath), true);
+    $json2 = json_decode(file_get_contents($secondFilePath), true);
+    print_r("{\n");
     array_map(fn($item) => print_r("$item\n"), combine($json1, $json2));
-    echo "}\n";
+    print_r("}\n");
 }
-
-genDiff($json1, $json2);
