@@ -32,5 +32,5 @@ $secondFilePath = realpath($args['<secondFile>']);
 if (!$firstFilePath or !$secondFilePath) {
     echo "Something is wrong with the given paths!" . PHP_EOL;
     } else {
-    genDiff($firstFilePath, $secondFilePath);
+    echo genDiff($firstFilePath, $secondFilePath);
     }

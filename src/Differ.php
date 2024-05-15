@@ -12,7 +12,6 @@ function setSign(array $arr, string $sign = '')
             $val = 'false';
         }
         $result[] = [$key, $val, $sign];
-        //$result[] = "$sign $key: $val\n";
     }
     return $result;
 }
@@ -32,11 +31,11 @@ function combine(array $json1, array $json2)
     }, $merged);
 }
 
-function genDiff($firstFilePath, $secondFilePath)
+function genDiff(string $firstFilePath, string $secondFilePath): string
 {
-    $json1 = json_decode(file_get_contents($firstFilePath), true);
-    $json2 = json_decode(file_get_contents($secondFilePath), true);
-    print_r("{\n");
-    array_map(fn($item) => print_r("$item\n"), combine($json1, $json2));
-    print_r("}\n");
+    $file1 = json_decode(file_get_contents($firstFilePath), true);
+    $file2 = json_decode(file_get_contents($secondFilePath), true);
+    $result = implode("\n" ,array_map(fn($item) => "  $item", combine($file1, $file2)));
+
+    return "\n{\n" . $result . "\n}\n";
 }
