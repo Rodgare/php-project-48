@@ -8,7 +8,7 @@ function genDiff(string $firstFilePath, string $secondFilePath): string
         return '';
     }
     if (!is_file($firstFilePath) || !is_file($secondFilePath)) {
-        return 'bad path';
+        return 'Wrong path';
     }
     $file1 = json_decode(file_get_contents($firstFilePath), true);
     $file2 = json_decode(file_get_contents($secondFilePath), true);

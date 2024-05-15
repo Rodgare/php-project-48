@@ -23,6 +23,6 @@ class Test extends TestCase
 
         $this->assertEquals($expected, $actual);
         $this->assertEquals('', genDiff('', ''));
-        $this->assertEquals('bad path', genDiff('wrongURL', 'badUrl'));
+        $this->assertEquals('Wrong path', genDiff('wrongURL', 'badUrl'));
     }
 }
