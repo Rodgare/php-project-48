@@ -2,21 +2,19 @@
 
 namespace Differ\Differ;
 
-function setSign(array $arr, string $sign = '')
+function setSign(array $arr, string $sign = ''): array
 {
-    $result = [];
-    foreach ($arr as $key => $val) {
+    return array_map(function ($key, $val) use ($sign) {
         if ($val === true) {
             $val = 'true';
         } elseif ($val === false) {
             $val = 'false';
         }
-        $result[] = [$key, $val, $sign];
-    }
-    return $result;
+        return [$key, $val, $sign];
+    }, array_keys($arr), $arr);
 }
 
-function combine(array $json1, array $json2)
+function combine(array $json1, array $json2): array
 {
     $merged = array_merge(
         setSign(array_diff($json1, $json2), '-'),
