@@ -45,3 +45,9 @@ function setSign(array $arr, string $sign = ''): array
         return [$key, $val, $sign];
     }, array_keys($arr), $arr);
 }
+
+function getFixtureFullPath($fixtureName)
+{
+    $parts = [__DIR__, 'fixtures', $fixtureName];
+    return realpath(implode('/', $parts));
+}
