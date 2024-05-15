@@ -8,8 +8,13 @@ use function Differ\Differ\genDiff;
 
 class Test extends TestCase
 {
-    public function testDifferPlainStyle(): void
+    public function testDiffer(): void
     {
-        print_r(genDiff("files/file1.json", "files/file1.json"));
+        $file1 = "tests/fixtures/file1.json";
+        $file2 = "tests/fixtures/file2.json";
+        $actual = genDiff($file1, $file2);
+        $expected = file_get_contents("tests/fixtures/testResult");
+        $this->assertEquals($expected, $actual);
+
     }
 }
