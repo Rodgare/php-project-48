@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3fa6dfac25eca45951029da9557c4770",
+    "content-hash": "5fa69cd95caeefcc629e9f50ed5c456b",
     "packages": [
         {
             "name": "docopt/docopt",
@@ -786,12 +786,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2cdfbd8ae87d3ab5644c751137aee1d64a930290"
+                "reference": "450ca7684a02adb4eed46c4e9f64ef57fc7ac57b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2cdfbd8ae87d3ab5644c751137aee1d64a930290",
-                "reference": "2cdfbd8ae87d3ab5644c751137aee1d64a930290",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/450ca7684a02adb4eed46c4e9f64ef57fc7ac57b",
+                "reference": "450ca7684a02adb4eed46c4e9f64ef57fc7ac57b",
                 "shasum": ""
             },
             "require": {
@@ -879,7 +879,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-13T05:55:32+00:00"
+            "time": "2024-05-14T14:32:54+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -1874,7 +1874,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "docopt/docopt": 20,
-        "lstrojny/functional-php": 20
+        "lstrojny/functional-php": 20,
+        "phpunit/phpunit": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

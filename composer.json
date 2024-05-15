@@ -8,11 +8,20 @@
             "Axel\\PhpProject48\\": "src/"
         }
     },
+    "bin": [
+        "bin/gendiff"
+    ],
     "authors": [
         {
             "name": "Axel",
             "email": "axel19911@gmail.com"
         }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Rodgare/php-project-48"
+    }
     ],
     "minimum-stability": "dev",
     "require": {
