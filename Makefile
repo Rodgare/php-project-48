@@ -3,7 +3,7 @@ install:
 validate:
 	composer validate
 lint:
-	composer exec --verbose phpcs -- --standart=PSR12 src bin tests
+	phpcs --standard=PSR12 src/
 test:
 	composer exec --verbose phpunit tests
 test-coverage:
