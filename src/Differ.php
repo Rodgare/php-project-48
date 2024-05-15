@@ -11,13 +11,13 @@ function genDiff(string $firstFilePath, string $secondFilePath): string
     return "\n{\n" . $result . "\n}\n";
 }
 
-function combine(array $json1, array $json2): array
+function combine(array $file1, array $file2): array
 {
     $sorted = sorting(
         array_merge(
-        setSign(array_diff($json1, $json2), '-'),
-        setSign(array_diff($json2, $json1), '+'), 
-        setSign(array_intersect($json1, $json2))
+        setSign(array_diff($file1, $file2), '-'),
+        setSign(array_diff($file2, $file1), '+'), 
+        setSign(array_intersect($file1, $file2))
     ));
     
     return array_map(function ($item) {
