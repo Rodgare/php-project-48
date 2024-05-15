@@ -26,11 +26,7 @@ DOC;
 
 $args = Docopt::handle($doc, array('version'=>'GenDiff 1.0'));
 $format = $args['--format'] ?? 'stylish';
-$firstFilePath = realpath($args['<firstFile>']);
-$secondFilePath = realpath($args['<secondFile>']);
+$firstFilePath = $args['<firstFile>'];
+$secondFilePath = $args['<secondFile>'];
 
-if (!$firstFilePath or !$secondFilePath) {
-    echo "Something is wrong with the given paths!" . PHP_EOL;
-    } else {
-    echo genDiff($firstFilePath, $secondFilePath);
-    }
+echo genDiff($firstFilePath, $secondFilePath);

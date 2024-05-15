@@ -20,7 +20,9 @@ class Test extends TestCase
         $file2 = getFixtureFullPath('file2.json');
         $actual = genDiff($file1, $file2);
         $expected = file_get_contents(getFixtureFullPath('testResult'));
-        $this->assertEquals($expected, $actual);
 
+        $this->assertEquals($expected, $actual);
+        $this->assertEquals('', genDiff('', ''));
+        $this->assertEquals('bad path', genDiff('wrongURL', 'badUrl'));
     }
 }

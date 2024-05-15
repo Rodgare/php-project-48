@@ -4,12 +4,20 @@ namespace Differ\Differ;
 
 function genDiff(string $firstFilePath, string $secondFilePath): string
 {
+    if (empty($firstFilePath) || empty($secondFilePath)) {
+        return '';
+    }
+    if (!is_file($firstFilePath) || !is_file($secondFilePath)) {
+        return 'bad path';
+    }
     $file1 = json_decode(file_get_contents($firstFilePath), true);
     $file2 = json_decode(file_get_contents($secondFilePath), true);
     $result = implode("\n", array_map(fn($item) => "  $item", combine($file1, $file2)));
 
     return "\n{\n" . $result . "\n}\n";
 }
+
+print_r(genDiff('', ''));
 
 function combine(array $file1, array $file2): array
 {
@@ -44,10 +52,4 @@ function setSign(array $arr, string $sign = ''): array
         }
         return [$key, $val, $sign];
     }, array_keys($arr), $arr);
-}
-
-function getFixtureFullPath($fixtureName)
-{
-    $parts = [__DIR__, 'fixtures', $fixtureName];
-    return realpath(implode('/', $parts));
 }
