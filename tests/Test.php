@@ -14,7 +14,7 @@ function getFixtureFullPath($fixtureName)
 
 class Test extends TestCase
 {
-    public function testDiffer(): void
+    public function testGenDiff(): void
     {
         $file1 = getFixtureFullPath('file1.json');
         $file2 = getFixtureFullPath('file2.json');

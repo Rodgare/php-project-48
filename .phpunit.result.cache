@@ -1,1 +1,1 @@
-{"version":1,"defects":{"Gendiff\\PHPUnit\\Tests\\Test::testDifferPlainStyle":4},"times":{"Gendiff\\PHPUnit\\Tests\\Test::testDifferPlainStyle":0.002}}
+{"version":1,"defects":{"Gendiff\\PHPUnit\\Tests\\Test::testDifferPlainStyle":4,"Gendiff\\PHPUnit\\Tests\\Test::testDiffer":4},"times":{"Gendiff\\PHPUnit\\Tests\\Test::testDifferPlainStyle":0.002,"Gendiff\\PHPUnit\\Tests\\Test::testDiffer":0.002,"Gendiff\\PHPUnit\\Tests\\Test::testGenDiff":0.002}}
