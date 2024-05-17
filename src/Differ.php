@@ -17,8 +17,6 @@ function genDiff(string $firstFilePath, string $secondFilePath): string
     return "\n{\n" . $result . "\n}\n";
 }
 
-print_r(genDiff('', ''));
-
 function combine(array $file1, array $file2): array
 {
     $sorted = sorting(
