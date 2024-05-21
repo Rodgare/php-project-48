@@ -8,7 +8,7 @@ test:
 	composer exec --verbose phpunit tests
 test-coverage:
 	composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
-xml:
+json:
 	bin/gendiff files/file1.json files/file2.json
 yml:
 	bin/gendiff files/file1.yaml files/file2.yaml

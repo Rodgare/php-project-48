@@ -2,4 +2,4 @@
  [![Test Coverage](https://api.codeclimate.com/v1/badges/e388d49eb376ecea7e5e/test_coverage)](https://codeclimate.com/github/Rodgare/php-project-48/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/e388d49eb376ecea7e5e/maintainability)](https://codeclimate.com/github/Rodgare/php-project-48/maintainability)
 
 ### Help and compare 2 jsons
-[![asciicast](https://asciinema.org/a/kHMmJWTWEwCb4QSd8JCNIBoOd.svg)](https://asciinema.org/a/kHMmJWTWEwCb4QSd8JCNIBoOd)
+[![asciicast](https://asciinema.org/a/O0KGLS4mI5zSK5rq9Bmm5Jb8n.svg)](https://asciinema.org/a/O0KGLS4mI5zSK5rq9Bmm5Jb8n)
