@@ -9,10 +9,11 @@ function decoder(string $firstFilePath, string $secondFilePath): string
     $extension = pathinfo($firstFilePath, PATHINFO_EXTENSION);
     return match ($extension) {
         'json' => implode("\n", array_map(fn($item) => "  $item", combine(
-            json_decode(file_get_contents($firstFilePath), true), 
-            json_decode(file_get_contents($secondFilePath), true)))),
+            json_decode(file_get_contents($firstFilePath), true),
+            json_decode(file_get_contents($secondFilePath), true)
+        ))),
         'yml', 'yaml' => implode("\n", array_map(fn($item) => "  $item", combine(
-            Yaml::parse(file_get_contents($firstFilePath)), 
+            Yaml::parse(file_get_contents($firstFilePath)),
             Yaml::parse(file_get_contents($secondFilePath))
         ))),
     };
@@ -30,7 +31,7 @@ function combine(array $file1, array $file2): array
 
     return array_map(function ($item) {
         [$key, $val, $sign] = $item;
-        return empty ($sign) ? "  $key: $val" : "$sign $key: $val";
+        return empty($sign) ? "  $key: $val" : "$sign $key: $val";
     }, $sorted);
 }
 
