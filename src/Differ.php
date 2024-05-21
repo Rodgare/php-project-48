@@ -2,14 +2,6 @@
 
 namespace Differ\Differ;
 
-$autoloadPath1 = __DIR__ . '/../../../autoload.php';
-$autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
-if (file_exists($autoloadPath1)) {
-    require_once $autoloadPath1;
-} else {
-    require_once $autoloadPath2;
-}
-
 use function Differ\Parsers\decoder;
 
 function genDiff(string $firstFilePath, string $secondFilePath): string
@@ -20,10 +12,8 @@ function genDiff(string $firstFilePath, string $secondFilePath): string
     if (!is_file($firstFilePath) || !is_file($secondFilePath)) {
         return 'Wrong path';
     }
-    $file1 = json_decode(file_get_contents($firstFilePath), true);
-    $file2 = json_decode(file_get_contents($secondFilePath), true);
-    $result = implode("\n", array_map(fn($item) => "  $item", combine($file1, $file2)));
-
+    $result = decoder($firstFilePath, $secondFilePath);
+    
     return "\n{\n" . $result . "\n}\n";
 }
 

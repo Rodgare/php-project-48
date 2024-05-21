@@ -2,17 +2,14 @@
 
 namespace Differ\Parsers;
 
-$autoloadPath1 = __DIR__ . '/../../../autoload.php';
-$autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
-if (file_exists($autoloadPath1)) {
-    require_once $autoloadPath1;
-} else {
-    require_once $autoloadPath2;
-}
-
 use Symfony\Component\Yaml\Yaml;
+use function Differ\Differ\combine;
 
-function decoder($file1, $file2)
+function decoder($firstFilePath, $secondFilePath)
 {
-    return "Parser\decoder works";
+    $file1 = json_decode(file_get_contents($firstFilePath), true);
+    $file2 = json_decode(file_get_contents($secondFilePath), true);
+    $result = implode("\n", array_map(fn($item) => "  $item", combine($file1, $file2)));
+    
+    return $result;
 }
