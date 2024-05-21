@@ -2,6 +2,10 @@
 
 namespace Differ\Differ;
 
+use function Differ\Parsers\decoder;
+
+print_r(decoder('1', '2'));
+
 function genDiff(string $firstFilePath, string $secondFilePath): string
 {
     if (empty($firstFilePath) || empty($secondFilePath)) {

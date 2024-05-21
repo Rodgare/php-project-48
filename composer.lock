@@ -937,12 +937,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "450ca7684a02adb4eed46c4e9f64ef57fc7ac57b"
+                "reference": "3e6c0dc8062db243ebc8c6db3df353ad411dff4f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/450ca7684a02adb4eed46c4e9f64ef57fc7ac57b",
-                "reference": "450ca7684a02adb4eed46c4e9f64ef57fc7ac57b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3e6c0dc8062db243ebc8c6db3df353ad411dff4f",
+                "reference": "3e6c0dc8062db243ebc8c6db3df353ad411dff4f",
                 "shasum": ""
             },
             "require": {
@@ -1030,7 +1030,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-14T14:32:54+00:00"
+            "time": "2024-05-19T12:52:56+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -1038,12 +1038,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/cli-parser.git",
-                "reference": "47c93ee55891788203dcb8efefa5abe46472266b"
+                "reference": "6900ec4367a8cdb9dd5be66239e7e2d014cf2b40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/cli-parser/zipball/47c93ee55891788203dcb8efefa5abe46472266b",
-                "reference": "47c93ee55891788203dcb8efefa5abe46472266b",
+                "url": "https://api.github.com/repos/sebastianbergmann/cli-parser/zipball/6900ec4367a8cdb9dd5be66239e7e2d014cf2b40",
+                "reference": "6900ec4367a8cdb9dd5be66239e7e2d014cf2b40",
                 "shasum": ""
             },
             "require": {
@@ -1088,7 +1088,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-04T08:53:05+00:00"
+            "time": "2024-05-20T06:31:55+00:00"
         },
         {
             "name": "sebastian/code-unit",
@@ -1096,12 +1096,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/code-unit.git",
-                "reference": "2a4919d2c7eb2e17379ea1e878fc8c176042ecf4"
+                "reference": "9668a3e4c161eb6e0c2860c192f3f4bad197e067"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/code-unit/zipball/2a4919d2c7eb2e17379ea1e878fc8c176042ecf4",
-                "reference": "2a4919d2c7eb2e17379ea1e878fc8c176042ecf4",
+                "url": "https://api.github.com/repos/sebastianbergmann/code-unit/zipball/9668a3e4c161eb6e0c2860c192f3f4bad197e067",
+                "reference": "9668a3e4c161eb6e0c2860c192f3f4bad197e067",
                 "shasum": ""
             },
             "require": {
@@ -1146,7 +1146,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-03T07:55:50+00:00"
+            "time": "2024-05-20T07:08:36+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -1976,12 +1976,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "83890f8eb658ef1af83bfdbf108f8257445a2d22"
+                "reference": "0552d143430fd7124725ec67eb94885c7ecc4c12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/83890f8eb658ef1af83bfdbf108f8257445a2d22",
-                "reference": "83890f8eb658ef1af83bfdbf108f8257445a2d22",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/0552d143430fd7124725ec67eb94885c7ecc4c12",
+                "reference": "0552d143430fd7124725ec67eb94885c7ecc4c12",
                 "shasum": ""
             },
             "require": {
@@ -2048,7 +2048,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-05-16T06:33:03+00:00"
+            "time": "2024-05-20T16:06:23+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -2106,6 +2106,7 @@
     "stability-flags": {
         "docopt/docopt": 20,
         "lstrojny/functional-php": 20,
+        "symfony/yaml": 20,
         "phpunit/phpunit": 20
     },
     "prefer-stable": false,
