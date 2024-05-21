@@ -17,12 +17,6 @@
             "email": "axel19911@gmail.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/Rodgare/php-project-48"
-    }
-    ],
     "minimum-stability": "dev",
     "require": {
         "docopt/docopt": "dev-master",
