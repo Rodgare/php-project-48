@@ -15,4 +15,3 @@ function genDiff(string $firstFilePath, string $secondFilePath): string
     $result = decoder($firstFilePath, $secondFilePath);
     return "\n{\n" . $result . "\n}\n";
 }
-
