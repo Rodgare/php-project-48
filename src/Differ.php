@@ -2,7 +2,9 @@
 
 namespace Differ\Differ;
 
-use function Differ\Formatter\decoder;
+use Symfony\Component\Yaml\Yaml;
+
+use Differ\Formatter;
 
 function genDiff(string $firstFilePath, string $secondFilePath)
 {
@@ -12,8 +14,7 @@ function genDiff(string $firstFilePath, string $secondFilePath)
     if (!is_file($firstFilePath) || !is_file($secondFilePath)) {
         return 'Wrong path';
     }
-    $result = decoder($firstFilePath, $secondFilePath);
-    return $result;
+    return decoder($firstFilePath, $secondFilePath);
 }
 
 function decoder(string $firstFilePath, string $secondFilePath)
