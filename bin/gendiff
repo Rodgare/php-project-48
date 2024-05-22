@@ -29,4 +29,4 @@ $format = $args['--format'] ?? 'stylish';
 $firstFilePath = $args['<firstFile>'];
 $secondFilePath = $args['<secondFile>'];
 
-echo genDiff($firstFilePath, $secondFilePath);
+print_r(genDiff($firstFilePath, $secondFilePath));

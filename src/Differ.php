@@ -4,7 +4,7 @@ namespace Differ\Differ;
 
 use function Differ\Parsers\decoder;
 
-function genDiff(string $firstFilePath, string $secondFilePath): string
+function genDiff(string $firstFilePath, string $secondFilePath)
 {
     if (empty($firstFilePath) || empty($secondFilePath)) {
         return '';
@@ -13,5 +13,5 @@ function genDiff(string $firstFilePath, string $secondFilePath): string
         return 'Wrong path';
     }
     $result = decoder($firstFilePath, $secondFilePath);
-    return "\n{\n" . $result . "\n}\n";
+    return $result;
 }
