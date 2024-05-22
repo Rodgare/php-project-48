@@ -274,12 +274,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "c5ee33df86c06b3278c670f64273b1ba768a0744"
+                "reference": "d327cf2acf22ad3d1fac5a382b7420bb6fd73bb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/c5ee33df86c06b3278c670f64273b1ba768a0744",
-                "reference": "c5ee33df86c06b3278c670f64273b1ba768a0744",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/d327cf2acf22ad3d1fac5a382b7420bb6fd73bb8",
+                "reference": "d327cf2acf22ad3d1fac5a382b7420bb6fd73bb8",
                 "shasum": ""
             },
             "require": {
@@ -325,7 +325,7 @@
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
                 "source": "https://github.com/nikic/PHP-Parser/tree/master"
             },
-            "time": "2024-04-19T12:04:10+00:00"
+            "time": "2024-05-21T16:12:19+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -1819,12 +1819,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "0552d143430fd7124725ec67eb94885c7ecc4c12"
+                "reference": "4d252f643690a4eaa7b2eb73eb0ea3917d47c9e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/0552d143430fd7124725ec67eb94885c7ecc4c12",
-                "reference": "0552d143430fd7124725ec67eb94885c7ecc4c12",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/4d252f643690a4eaa7b2eb73eb0ea3917d47c9e4",
+                "reference": "4d252f643690a4eaa7b2eb73eb0ea3917d47c9e4",
                 "shasum": ""
             },
             "require": {
@@ -1891,7 +1891,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-05-20T16:06:23+00:00"
+            "time": "2024-05-22T21:25:16+00:00"
         },
         {
             "name": "theseer/tokenizer",
