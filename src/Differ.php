@@ -25,21 +25,23 @@ function decoder(string $firstFilePath, string $secondFilePath)
             json_decode(file_get_contents($firstFilePath), true),
             json_decode(file_get_contents($secondFilePath), true)
         ),
-        'yml', 'yaml' => implode("\n", array_map(fn($item) => "  $item", combine(
-            Yaml::parse(file_get_contents($firstFilePath)),
-            Yaml::parse(file_get_contents($secondFilePath))
-        ))),
+        'yml', 'yaml' => implode("\n", array_map(
+            fn($item) => "  $item",
+            combine(
+                Yaml::parse(file_get_contents($firstFilePath)),
+                Yaml::parse(file_get_contents($secondFilePath))
+            )
+        )
+        ),
     };
 }
 
 function combine(array $file1, array $file2): array
 {
-    $sorted = sorting(
-        array_merge(
-            setSign(array_diff($file1, $file2), '-'),
-            setSign(array_diff($file2, $file1), '+'),
-            setSign(array_intersect($file1, $file2))
-        )
+    $sorted = arrayMergeRecursiveThree(
+        arrayDiffAssocRecursive($file1, $file2, "-"),
+        arrayDiffAssocRecursive($file2, $file1, "+"),
+        arrayIntersectAssocRecursive($file1, $file2)
     );
 
     return $sorted;
@@ -47,6 +49,60 @@ function combine(array $file1, array $file2): array
         [$key, $val, $sign] = $item;
         return empty($sign) ? "  $key: $val" : "$sign $key: $val";
     }, $sorted);*/
+}
+
+function arrayDiffAssocRecursive($array1, $array2, $sign)
+{
+    $difference = array();
+
+    foreach ($array1 as $key => $value) {
+        if (is_array($value)) {
+            if (!isset($array2[$key]) || !is_array($array2[$key])) {
+                $difference[$key] = [$value, $sign];
+            } else {
+                $new_diff = arrayDiffAssocRecursive($value, $array2[$key], $sign);
+                if (!empty($new_diff)) {
+                    $difference[$key] = $new_diff;
+                }
+            }
+        } elseif (!array_key_exists($key, $array2) || $array2[$key] !== $value) {
+            $difference[$key] = [$value, $sign];
+        }
+    }
+
+    return $difference;
+}
+
+function arrayIntersectAssocRecursive($array1, $array2)
+{
+    $result = array();
+
+    foreach ($array1 as $key => $value) {
+        if (is_array($value) && isset($array2[$key]) && is_array($array2[$key])) {
+            $result[$key] = arrayIntersectAssocRecursive($value, $array2[$key]);
+        } elseif (isset($array2[$key]) && $array2[$key] === $value) {
+            $result[$key] = $value;
+        }
+    }
+
+    return $result;
+}
+
+function arrayMergeRecursiveThree($array1, $array2, $array3)
+{
+    $arrays = [$array2, $array3];
+    
+    foreach ($arrays as $array) {
+        foreach ($array as $key => $value) {
+            if (isset($array1[$key]) && is_array($array1[$key]) && is_array($value)) {
+                $array1[$key] = arrayMergeRecursiveThree($array1[$key], $value, []);
+            } else {
+                $array1[$key] = $value;
+            }
+        }
+    }
+
+    return $array1;
 }
 
 function sorting(array $arr): array
