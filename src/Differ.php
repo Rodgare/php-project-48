@@ -130,7 +130,9 @@ function addSign(array $arr): array
             $newKey = '- ' . str_replace('8', '', $key);
         } elseif (str_contains($key, '9')) {
             $newKey = '+ ' . str_replace('9', '', $key);
-        } 
+        } elseif (!str_contains($key, '9') && !str_contains($key, '8')) {
+            $newKey = '  ' . $key;
+        }
         $result[$newKey] = $val;
         if (is_array($val)) {
             $result[$newKey] = addSign($val);
