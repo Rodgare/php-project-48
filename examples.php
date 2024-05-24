@@ -4,45 +4,57 @@
 
 $array1 = [
     'a' => [
-        'b' => 2,
-        'c' => 3,
         'r' => [
-            'tt' => 'deep'
-        ]
+            'tt' => true,
+            'zz' => false,
+            'cc' => 'deepeer',
+            'r' => 'deepeer',
+            'aa' => 'deepeer',
+            'ks' => 'deepeer'
+        ],
+        'b' => 2,
+        'c' => 3
+        
     ],
-    'd' => 4
+    'd' => 4,
+    'yoo' => [
+        'new' => 'cool'
+    ]
 ];
 
 $array2 = [
     'a' => [
-        'b' => 2,
-        'c' => 3,
         'r' => [
-            'tt' => 'deepeer'
-        ]
+            'tt' => true,
+            'zz' => false,
+            'cc' => 'deepeer',
+            'r' => 'deepeer',
+            'aa' => 'deepeer',
+            'ks' => 'deepeer'
+        ],
+        'b' => 2,
+        'c' => 3
+        
     ],
-    'd' => 4
+    'd' => 4,
+    'yoo' => [
+        'new' => 'huiul'
+    ]
 ];
-function arrayDiffAssocRecursive($array1, $array2, $sign = '')
-{
-    $difference = array();
 
-    foreach ($array1 as $key => $value) {
-        if (is_array($value)) {
-            if (!isset($array2[$key]) || !is_array($array2[$key])) {
-                $difference[$key] = [$value, $sign];
-            } else {
-                $new_diff = arrayDiffAssocRecursive($value, $array2[$key], $sign);
-                if (!empty($new_diff)) {
-                    $difference[$key] = $new_diff;
-                }
-            }
-        } elseif (!array_key_exists($key, $array2) || $array2[$key] !== $value) {
-            $difference[$key] = [$value, $sign];
+function sorting(array $arr): array
+{
+    ksort($arr);
+
+    foreach ($arr as $key => $val) {
+        if (is_array($val)) {
+            $arr[$key] = sorting($val);
         }
     }
 
-    return $difference;
+    return $arr;
 }
 
-print_r(arrayDiffAssocRecursive($array1, $array2, "-"));
+print_r(
+    sorting($array1)
+);
