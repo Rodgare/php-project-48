@@ -4,20 +4,18 @@ namespace Differ\Differ;
 
 use Symfony\Component\Yaml\Yaml;
 
-use Differ\Formatter;
-
-function genDiff(string $firstFilePath, string $secondFilePath)
+function genDiff(string $firstFilePath, string $secondFilePath): array
 {
-    if (empty($firstFilePath) || empty($secondFilePath)) {
+    /*if (empty($firstFilePath) || empty($secondFilePath)) {
         return '';
     }
     if (!is_file($firstFilePath) || !is_file($secondFilePath)) {
         return 'Wrong path';
-    }
+    }*/
     return decoder($firstFilePath, $secondFilePath);
 }
 
-function decoder(string $firstFilePath, string $secondFilePath)
+function decoder(string $firstFilePath, string $secondFilePath): array
 {
     $extension = pathinfo($firstFilePath, PATHINFO_EXTENSION);
     return match ($extension) {
@@ -38,20 +36,22 @@ function decoder(string $firstFilePath, string $secondFilePath)
     };
 }
 
-function combine(array $file1, array $file2)
+function combine(array $file1, array $file2): array
 {
-    $sorted = sorting(
-        arrayMerge(
-            arrayDiffAssocRecursive($file1, $file2, '8'),
-            arrayDiffAssocRecursive($file2, $file1, '9'),
-            arrayIntersectAssocRecursive($file1, $file2, ' ')
+    $sorted = addSign(
+        sorting(
+            arrayMerge(
+                arrayDiffAssocRecursive($file1, $file2, '8'),
+                arrayDiffAssocRecursive($file2, $file1, '9'),
+                arrayIntersectAssocRecursive($file1, $file2)
+            )
         )
     );
 
     return $sorted;
 }
 
-function arrayDiffAssocRecursive($array1, $array2, $sign)
+function arrayDiffAssocRecursive(array $array1, array $array2, string $sign): array
 {
     $difference = array();
 
@@ -62,7 +62,7 @@ function arrayDiffAssocRecursive($array1, $array2, $sign)
             } else {
                 $new_diff = arrayDiffAssocRecursive($value, $array2[$key], $sign);
                 if (!empty($new_diff)) {
-                    $difference[$key . ' '] = $new_diff;
+                    $difference[$key] = $new_diff;
                 }
             }
         } elseif (!array_key_exists($key, $array2) || $array2[$key] !== $value) {
@@ -73,22 +73,22 @@ function arrayDiffAssocRecursive($array1, $array2, $sign)
     return $difference;
 }
 
-function arrayIntersectAssocRecursive($array1, $array2, $sign)
+function arrayIntersectAssocRecursive(array $array1, array $array2): array
 {
     $result = array();
 
     foreach ($array1 as $key => $value) {
         if (is_array($value) && isset($array2[$key]) && is_array($array2[$key])) {
-            $result[$key . $sign] = arrayIntersectAssocRecursive($value, $array2[$key], $sign);
+            $result[$key] = arrayIntersectAssocRecursive($value, $array2[$key]);
         } elseif (isset($array2[$key]) && $array2[$key] === $value) {
-            $result[$key . $sign] = $value;
+            $result[$key] = $value;
         }
     }
 
     return $result;
 }
 
-function arrayMerge($arr1, $arr2, $arr3)
+function arrayMerge(array $arr1, array $arr2, array $arr3): array
 {
     $arrays = func_get_args();
     $merged = array();
@@ -119,4 +119,23 @@ function sorting(array $arr): array
     }
 
     return $arr;
+}
+
+function addSign(array $arr): array
+{
+    $result = [];
+    foreach ($arr as $key => $val) {
+        $newKey = $key;
+        if (str_contains($key, '8')) {
+            $newKey = '- ' . str_replace('8', '', $key);
+        } elseif (str_contains($key, '9')) {
+            $newKey = '+ ' . str_replace('9', '', $key);
+        } 
+        $result[$newKey] = $val;
+        if (is_array($val)) {
+            $result[$newKey] = addSign($val);
+        }
+    }
+
+    return $result;
 }
