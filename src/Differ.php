@@ -4,7 +4,9 @@ namespace Differ\Differ;
 
 use Symfony\Component\Yaml\Yaml;
 
-function genDiff(string $firstFilePath, string $secondFilePath): array
+use function Differ\Formatter\stylish;
+
+function genDiff(string $firstFilePath, string $secondFilePath)
 {
     if (empty($firstFilePath) || empty($secondFilePath)) {
         return [];
@@ -13,7 +15,7 @@ function genDiff(string $firstFilePath, string $secondFilePath): array
         return ['File not found.'];
     }
 
-    return match (pathinfo($firstFilePath, PATHINFO_EXTENSION)) {
+    $result = match (pathinfo($firstFilePath, PATHINFO_EXTENSION)) {
         'json' => combine(
             json_decode(file_get_contents($firstFilePath), true),
             json_decode(file_get_contents($secondFilePath), true)
@@ -23,6 +25,8 @@ function genDiff(string $firstFilePath, string $secondFilePath): array
             Yaml::parse(file_get_contents($secondFilePath))
         )
     };
+
+    return stylish($result);
 }
 
 function combine(array $file1, array $file2): array
@@ -32,7 +36,7 @@ function combine(array $file1, array $file2): array
             arrayMerge(
                 arrayDiff($file1, $file2, '8'),
                 arrayDiff($file2, $file1, '9'),
-                arrayIntersect($file1, $file2) 
+                arrayIntersect($file1, $file2)
             )
         )
     );
