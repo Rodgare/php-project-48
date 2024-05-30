@@ -6,52 +6,39 @@ use Symfony\Component\Yaml\Yaml;
 
 function genDiff(string $firstFilePath, string $secondFilePath): array
 {
-    /*if (empty($firstFilePath) || empty($secondFilePath)) {
-        return '';
+    if (empty($firstFilePath) || empty($secondFilePath)) {
+        return [];
     }
     if (!is_file($firstFilePath) || !is_file($secondFilePath)) {
-        return 'Wrong path';
-    }*/
-    return decoder($firstFilePath, $secondFilePath);
-}
+        return ['File not found.'];
+    }
 
-function decoder(string $firstFilePath, string $secondFilePath): array
-{
-    $extension = pathinfo($firstFilePath, PATHINFO_EXTENSION);
-    return match ($extension) {
+    return match (pathinfo($firstFilePath, PATHINFO_EXTENSION)) {
         'json' => combine(
             json_decode(file_get_contents($firstFilePath), true),
             json_decode(file_get_contents($secondFilePath), true)
         ),
-        'yml', 'yaml' => implode(
-            "\n",
-            array_map(
-                fn($item) => "  $item",
-                combine(
-                    Yaml::parse(file_get_contents($firstFilePath)),
-                    Yaml::parse(file_get_contents($secondFilePath))
-                )
-            )
-        ),
+        'yml', 'yaml' => combine(
+            Yaml::parse(file_get_contents($firstFilePath)),
+            Yaml::parse(file_get_contents($secondFilePath))
+        )
     };
 }
 
 function combine(array $file1, array $file2): array
 {
-    $sorted = addSign(
+    return addSign(
         sorting(
             arrayMerge(
-                arrayDiffAssocRecursive($file1, $file2, '8'),
-                arrayDiffAssocRecursive($file2, $file1, '9'),
-                arrayIntersectAssocRecursive($file1, $file2)
+                arrayDiff($file1, $file2, '8'),
+                arrayDiff($file2, $file1, '9'),
+                arrayIntersect($file1, $file2) 
             )
         )
     );
-
-    return $sorted;
 }
 
-function arrayDiffAssocRecursive(array $array1, array $array2, string $sign): array
+function arrayDiff(array $array1, array $array2, string $sign): array
 {
     $difference = array();
 
@@ -60,7 +47,7 @@ function arrayDiffAssocRecursive(array $array1, array $array2, string $sign): ar
             if (!isset($array2[$key]) || !is_array($array2[$key])) {
                 $difference[$key . $sign] = $value;
             } else {
-                $new_diff = arrayDiffAssocRecursive($value, $array2[$key], $sign);
+                $new_diff = arrayDiff($value, $array2[$key], $sign);
                 if (!empty($new_diff)) {
                     $difference[$key] = $new_diff;
                 }
@@ -73,13 +60,13 @@ function arrayDiffAssocRecursive(array $array1, array $array2, string $sign): ar
     return $difference;
 }
 
-function arrayIntersectAssocRecursive(array $array1, array $array2): array
+function arrayIntersect(array $array1, array $array2): array
 {
     $result = array();
 
     foreach ($array1 as $key => $value) {
         if (is_array($value) && isset($array2[$key]) && is_array($array2[$key])) {
-            $result[$key] = arrayIntersectAssocRecursive($value, $array2[$key]);
+            $result[$key] = arrayIntersect($value, $array2[$key]);
         } elseif (isset($array2[$key]) && $array2[$key] === $value) {
             $result[$key] = $value;
         }
