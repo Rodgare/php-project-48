@@ -4,9 +4,9 @@ namespace Differ\Differ;
 
 use Symfony\Component\Yaml\Yaml;
 
-use function Differ\Formatter\stylish;
+use Differ\Formatter;
 
-function genDiff(string $firstFilePath, string $secondFilePath)
+function genDiff(string $firstFilePath, string $secondFilePath, string $format)
 {
     if (empty($firstFilePath) || empty($secondFilePath)) {
         return [];
@@ -26,7 +26,7 @@ function genDiff(string $firstFilePath, string $secondFilePath)
         )
     };
 
-    return stylish($result);
+    return $format === 'plain' ? Formatter\mergeUpdatedItems($result) : Formatter\stylish($result);
 }
 
 function combine(array $file1, array $file2): array
@@ -34,7 +34,7 @@ function combine(array $file1, array $file2): array
     return addSign(
         sorting(
             arrayMerge(
-                arrayDiff($file1, $file2, '8'),
+                arrayDiff($file1, $file2, '8'), //numbers need for sorting
                 arrayDiff($file2, $file1, '9'),
                 arrayIntersect($file1, $file2)
             )

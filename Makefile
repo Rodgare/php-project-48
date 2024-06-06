@@ -12,3 +12,5 @@ json:
 	bin/gendiff files/file1.json files/file2.json
 yml:
 	bin/gendiff files/file1.yaml files/file2.yaml
+plain-json:
+	bin/gendiff --format plain files/file1.json files/file2.json

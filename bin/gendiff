@@ -29,5 +29,5 @@ $format = $args['--format'] ?? 'stylish';
 $firstFilePath = $args['<firstFile>'];
 $secondFilePath = $args['<secondFile>'];
 
-$dif = genDiff($firstFilePath, $secondFilePath);
+$dif = genDiff($firstFilePath, $secondFilePath, $format);
 print_r($dif);
