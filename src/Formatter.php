@@ -7,6 +7,12 @@ function toString($value)
     return str_replace("NULL", "null", str_replace("'", "", var_export($value, true)));
 }
 
+function normilizeString($val)
+{
+    $result = str_replace("NULL", "null", $val);
+    return trim(var_export($result, true), " +-=");
+}
+
 function stylish(array $tree): string
 {
     $replacer = ' ';
@@ -38,16 +44,10 @@ function plain($tree)
 {
     $result = array_map(
         function ($key, $val) {
-            if (str_contains($key, '+')) {
-                return is_array($val) ?
-                    "Property $key was added with value: [complex value]" :
-                    "Property $key was added with value: $val";
-            } elseif (str_contains($key, '-')) {
-                return "Property $key was removed";
-            }
+            
         },
-        array_keys($tree),
-        $tree
+        array_keys(mergeUpdatedItems($tree)),
+        mergeUpdatedItems($tree)
     );
     return $result;
 }
@@ -60,12 +60,12 @@ function mergeUpdatedItems($tree)
         if (array_key_exists($trimKey, $oldKeys)) {
             is_array($val) ?
                 $oldKeys[$trimKey] = mergeUpdatedItems($val) :
-                $oldKeys['=' . trim($key, "+")] = ['from' => $tree[$trimKey], 'to' => $val];
+                $oldKeys['=' . trim($key, "+")] = (['from' => $tree[$trimKey], 'to' => $val]);
                 unset($oldKeys[$trimKey]);
         } else {
             is_array($val) ?
                 $oldKeys[$key] = mergeUpdatedItems($val) :
-                $oldKeys[$key] = var_export($val, true);
+                $oldKeys[$key] = $val;
         }
     }
 
