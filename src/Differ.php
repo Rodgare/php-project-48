@@ -3,10 +3,9 @@
 namespace Differ\Differ;
 
 use Symfony\Component\Yaml\Yaml;
-
 use Differ\Formatter;
 
-function genDiff(string $firstFilePath, string $secondFilePath, string $format)
+function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish')
 {
     if (empty($firstFilePath) || empty($secondFilePath)) {
         return [];
@@ -26,7 +25,7 @@ function genDiff(string $firstFilePath, string $secondFilePath, string $format)
         )
     };
 
-    return $format === 'plain' ? Formatter\mergeUpdatedItems($result) : Formatter\stylish($result);
+    return $format === 'plain' ? Formatter\plain($result) : Formatter\stylish($result);
 }
 
 function combine(array $file1, array $file2): array

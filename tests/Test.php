@@ -29,4 +29,17 @@ class Test extends TestCase
         $this->assertEquals([], genDiff('', ''));
         $this->assertEquals(['File not found.'], genDiff('wrongURL', 'badUrl'));
     }
+
+    public function testGenDiffPlain(): void{
+        $fileJson1 = getFixtureFullPath('file1.json');
+        $fileJson2 = getFixtureFullPath('file2.json');
+        $fileYaml1 = getFixtureFullPath('file1.yaml');
+        $fileYaml2 = getFixtureFullPath('file2.yaml');
+        $actualJson = genDiff($fileJson1, $fileJson2, 'plain');
+        $actualYaml = genDiff($fileYaml1, $fileYaml2, 'plain');
+        $expected = file_get_contents(getFixtureFullPath('testResultPlain'));
+
+        $this->assertEquals($expected, $actualJson);
+        $this->assertEquals($expected, $actualYaml);
+    }
 }
