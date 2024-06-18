@@ -3,7 +3,7 @@
     "description": "Second project",
     "license": "MIT",
     "autoload": {
-        "files": ["src/Differ.php", "src/Formatter.php"],
+        "files": ["src/Differ.php", "src/Formatter.php", "src/Formatters/plain.php", "src/Formatters/stylish.php"],
         "psr-4": {
             "Axel\\PhpProject48\\": "src/"
         }

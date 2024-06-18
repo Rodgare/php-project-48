@@ -3,7 +3,8 @@
 namespace Differ\Differ;
 
 use Symfony\Component\Yaml\Yaml;
-use Differ\Formatter;
+
+use function Differ\Formatter\changeFormat;
 
 function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish')
 {
@@ -25,7 +26,7 @@ function genDiff(string $firstFilePath, string $secondFilePath, string $format =
         )
     };
 
-    return $format === 'plain' ? Formatter\plain($result) : Formatter\stylish($result);
+    return changeFormat($result, $format);
 }
 
 function combine(array $file1, array $file2): array
