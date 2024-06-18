@@ -3,3 +3,4 @@
 
 ### Demo
 [![asciicast](https://asciinema.org/a/O0KGLS4mI5zSK5rq9Bmm5Jb8n.svg)](https://asciinema.org/a/O0KGLS4mI5zSK5rq9Bmm5Jb8n)
+[![asciicast](https://asciinema.org/a/J2zyE9I3289ReFV62srO0zDvP.svg)](https://asciinema.org/a/J2zyE9I3289ReFV62srO0zDvP)
