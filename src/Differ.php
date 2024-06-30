@@ -34,7 +34,7 @@ function combine(array $file1, array $file2): array
     return addSign(
         sorting(
             arrayMerge(
-                arrayDiff($file1, $file2, '8'), //numbers need for sorting
+                arrayDiff($file1, $file2, '8'),
                 arrayDiff($file2, $file1, '9'),
                 arrayIntersect($file1, $file2)
             )

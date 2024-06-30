@@ -16,7 +16,7 @@ function stylish(array $tree): string
         $bracketIndent = str_repeat($replacer, $indentSize - $spacesCount);
 
         $lines = array_map(
-            fn($key, $val) => "{$currentIndent}{$key}: {$iter($val, $depth + 2)}",
+            fn($key, $val) => $val === '' ? "{$currentIndent}{$key}:{$iter($val, $depth + 2)}" : "{$currentIndent}{$key}: {$iter($val, $depth + 2)}",
             array_keys($currentValue),
             $currentValue
         );
