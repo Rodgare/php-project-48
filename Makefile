@@ -12,5 +12,7 @@ json:
 	bin/gendiff files/file1.json files/file2.json
 yml:
 	bin/gendiff files/file1.yaml files/file2.yaml
-plain-json:
+plain:
 	bin/gendiff -f plain files/file1.json files/file2.json
+toJson:
+	bin/gendiff -f json files/file1.json files/file2.json
