@@ -39,23 +39,20 @@ function arrayDiff(array $array1, array $array2, string $sign): array
 {
     $difference = array();
 
-    $callback = function ($key, $value) use ($array2, $sign, &$difference) {
-        $newkey = "$key$sign";
+    foreach ($array1 as $key => $value) {
         if (is_array($value)) {
             if (!isset($array2[$key]) || !is_array($array2[$key])) {
-                $difference[$newkey] = $value;
+                $difference[$key . $sign] = $value;
             } else {
                 $new_diff = arrayDiff($value, $array2[$key], $sign);
-                if (!empty($new_diff)) {
+                if (isset($new_diff)) {
                     $difference[$key] = $new_diff;
                 }
             }
         } elseif (!array_key_exists($key, $array2) || $array2[$key] !== $value) {
-            $difference[$newkey] = $value;
+            $difference[$key . $sign] = $value;
         }
-    };
-
-    array_map($callback, array_keys($array1), $array1);
+    }
 
     return $difference;
 }
