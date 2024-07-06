@@ -6,7 +6,7 @@ use Symfony\Component\Yaml\Yaml;
 
 use function Differ\Formatter\changeFormat;
 
-function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish')
+function genDiff(mixed $firstFilePath, mixed $secondFilePath, string $format = 'stylish')
 {
     $result = match (pathinfo($firstFilePath, PATHINFO_EXTENSION)) {
         'yml', 'yaml' => combine(
@@ -39,10 +39,11 @@ function arrayDiff(array $array1, array $array2, string $sign): array
 {
     $difference = array();
 
-    foreach ($array1 as $key => $value) {
+    array_map(function ($key, $value) use (&$difference, $array2, $sign) {
+        $newkey = "$key$sign";
         if (is_array($value)) {
             if (!isset($array2[$key]) || !is_array($array2[$key])) {
-                $difference[$key . $sign] = $value;
+                $difference[$newkey] = $value;
             } else {
                 $new_diff = arrayDiff($value, $array2[$key], $sign);
                 if (!empty($new_diff)) {
@@ -50,9 +51,9 @@ function arrayDiff(array $array1, array $array2, string $sign): array
                 }
             }
         } elseif (!array_key_exists($key, $array2) || $array2[$key] !== $value) {
-            $difference[$key . $sign] = $value;
+            $difference[$newkey] = $value;
         }
-    }
+    }, array_keys($array1), $array1);
 
     return $difference;
 }
