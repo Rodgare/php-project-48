@@ -2,12 +2,12 @@
 
 namespace Differ\Formatters\Plain;
 
-function plain($tree, $path = '')
+function plain(array $tree, string $path = ''): string
 {
     $result = array_map(
-        function ($key, $val) use ($path) {
+        function (string $key, $val) use ($path) {
             $Newkey = normalizeKey($key);
-            $path .= $Newkey;
+            $path = "$path$Newkey";
             if (str_contains($key, '+')) {
                 $newValue = is_array($val) ? "[complex value]" : normalizeString($val);
                 return "Property '$path' was added with value: $newValue";
@@ -29,15 +29,16 @@ function plain($tree, $path = '')
     return implode("\n", array_filter(flattenAll($result)));
 }
 
-function updatedItems($tree)
+function updatedItems(array $tree): array
 {
     $oldKeys = [];
     foreach ($tree as $key => $val) {
-        $trimKey = '- ' . trim($key, " +");
+        $keyWithoutPlus = trim($key, " +");
+        $trimKey = "- $keyWithoutPlus";
         if (array_key_exists($trimKey, $oldKeys)) {
             is_array($val) ?
                 $oldKeys[$trimKey] = updatedItems($val) :
-                $oldKeys['=' . trim($key, "+")] = (['updatedFrom' => $tree[$trimKey], 'updatedTo' => $val]);
+                $oldKeys["=$keyWithoutPlus"] = (['updatedFrom' => $tree[$trimKey], 'updatedTo' => $val]);
             unset($oldKeys[$trimKey]);
         } else {
             is_array($val) ?

@@ -29,7 +29,7 @@ function stylish(array $tree): string
     return $iter($tree, 1);
 }
 
-function toString($value)
+function toString(mixed $value): string
 {
     return str_replace("NULL", "null", str_replace("'", "", var_export($value, true)));
 }
