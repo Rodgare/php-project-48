@@ -8,18 +8,14 @@ use function Differ\Formatter\changeFormat;
 
 function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish')
 {
-    if (!is_file($firstFilePath) || !is_file($secondFilePath)) {
-        return ['File not found.'];
-    }
-
     $result = match (pathinfo($firstFilePath, PATHINFO_EXTENSION)) {
         'yml', 'yaml' => combine(
-            Yaml::parse(file_get_contents($firstFilePath)),
-            Yaml::parse(file_get_contents($secondFilePath))
+            Yaml::parse(falseToString(file_get_contents($firstFilePath))),
+            Yaml::parse(falseToString(file_get_contents($secondFilePath)))
         ),
         default => combine(
-            json_decode(file_get_contents($firstFilePath), true),
-            json_decode(file_get_contents($secondFilePath), true)
+            json_decode(falseToString(file_get_contents($firstFilePath)), true),
+            json_decode(falseToString(file_get_contents($secondFilePath)), true)
         )
     };
 
@@ -128,4 +124,9 @@ function addSign(array $arr): array
     }
 
     return $result;
+}
+
+function falseToString(mixed $str): string
+{
+    return $str === false ? '' : $str;
 }
