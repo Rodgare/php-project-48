@@ -17,7 +17,7 @@
             "email": "axel19911@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "docopt/docopt": "dev-master",
         "symfony/yaml": "7.2.x-dev"
