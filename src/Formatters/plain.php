@@ -7,7 +7,7 @@ function plain(array $tree, string $path = ''): string
     $result = array_map(
         function (string $key, $val) use ($path) {
             $Newkey = normalizeKey($key);
-            $path = "$path$Newkey";
+            $path = "{$path}{$Newkey}";
             if (str_contains($key, '+')) {
                 $newValue = is_array($val) ? "[complex value]" : normalizeString($val);
                 return "Property '$path' was added with value: $newValue";
