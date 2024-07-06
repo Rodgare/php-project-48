@@ -8,21 +8,18 @@ use function Differ\Formatter\changeFormat;
 
 function genDiff(string $firstFilePath, string $secondFilePath, string $format = 'stylish')
 {
-    if (empty($firstFilePath) || empty($secondFilePath)) {
-        return [];
-    }
     if (!is_file($firstFilePath) || !is_file($secondFilePath)) {
         return ['File not found.'];
     }
 
     $result = match (pathinfo($firstFilePath, PATHINFO_EXTENSION)) {
-        'json' => combine(
-            json_decode(file_get_contents($firstFilePath), true),
-            json_decode(file_get_contents($secondFilePath), true)
-        ),
         'yml', 'yaml' => combine(
             Yaml::parse(file_get_contents($firstFilePath)),
             Yaml::parse(file_get_contents($secondFilePath))
+        ),
+        default => combine(
+            json_decode(file_get_contents($firstFilePath), true),
+            json_decode(file_get_contents($secondFilePath), true)
         )
     };
 
