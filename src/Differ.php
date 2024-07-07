@@ -39,10 +39,10 @@ function arrayDiff(array $array1, array $array2, string $sign): array
 {
     return array_reduce(array_keys($array1), function ($result, $key) use ($array1, $array2, $sign) {
         $value = $array1[$key];
-
+        $newKey = "{$key}{$sign}";
         if (is_array($value)) {
             if (!isset($array2[$key]) || !is_array($array2[$key])) {
-                $result[$key . $sign] = $value;
+                $result[$newKey] = $value;
             } else {
                 $new_diff = arrayDiff($value, $array2[$key], $sign);
                 if (!empty($new_diff)) {
@@ -50,7 +50,7 @@ function arrayDiff(array $array1, array $array2, string $sign): array
                 }
             }
         } elseif (!array_key_exists($key, $array2) || $array2[$key] !== $value) {
-            $result[$key . $sign] = $value;
+            $result[$newKey] = $value;
         }
 
         return $result;
