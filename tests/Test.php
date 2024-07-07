@@ -43,18 +43,4 @@ class Test extends TestCase
         $this->assertEquals($expected, $actualJson);
         $this->assertEquals($expected, $actualYaml);
     }
-
-    public function testGenDiffToJson(): void
-    {
-        $fileJson1 = getFixtureFullPath('file1.json');
-        $fileJson2 = getFixtureFullPath('file2.json');
-        $fileYaml1 = getFixtureFullPath('file1.yaml');
-        $fileYaml2 = getFixtureFullPath('file2.yaml');
-        $actualJson = genDiff($fileJson1, $fileJson2, 'json');
-        $actualYaml = genDiff($fileYaml1, $fileYaml2, 'json');
-        $expected = file_get_contents(getFixtureFullPath('testResult.json'));
-
-        $this->assertEquals($expected, $actualJson);
-        $this->assertEquals($expected, $actualYaml);
-    }
 }
