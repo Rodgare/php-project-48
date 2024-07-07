@@ -37,24 +37,24 @@ function combine(array $file1, array $file2): array
 
 function arrayDiff(array $array1, array $array2, string $sign): array
 {
-    $difference = array();
+    return array_reduce(array_keys($array1), function ($result, $key) use ($array1, $array2, $sign) {
+        $value = $array1[$key];
 
-    foreach ($array1 as $key => $value) {
         if (is_array($value)) {
             if (!isset($array2[$key]) || !is_array($array2[$key])) {
-                $difference[$key . $sign] = $value;
+                $result[$key . $sign] = $value;
             } else {
                 $new_diff = arrayDiff($value, $array2[$key], $sign);
-                if (isset($new_diff)) {
-                    $difference[$key] = $new_diff;
+                if (!empty($new_diff)) {
+                    $result[$key] = $new_diff;
                 }
             }
         } elseif (!array_key_exists($key, $array2) || $array2[$key] !== $value) {
-            $difference[$key . $sign] = $value;
+            $result[$key . $sign] = $value;
         }
-    }
 
-    return $difference;
+        return $result;
+    }, []);
 }
 
 function arrayIntersect(array $array1, array $array2): array
